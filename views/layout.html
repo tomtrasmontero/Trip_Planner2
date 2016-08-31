@@ -26,13 +26,20 @@
         </ul>
       </div>
     </div>
-
+   <script src="/jquery/jquery.min.js"></script>
+<script>
+  {% autoescape false %}
+  var hotels = {{hotels | json }};
+  var restaurants = {{ restaurants | json }};
+  var activities = {{ activities | json }};
+  {% endautoescape %}
+</script>
     {% block content %}
     {% endblock %}
 
-    <script src="/jquery/jquery.min.js"></script>
+ 
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfQxgWt-LSZcEmTEN8581Uq9SzZHnpuys"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEy0gAJgc7XeMdHz2esguNqGwXyaYX8k4"></script>
     <script src="/js/main.js"></script>
 
   </body>

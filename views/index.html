@@ -16,29 +16,57 @@
           <div>
             <h4>Hotels</h4>
             <select data-type="hotel" id="hotel-choices">
-            {% for hotel in hotels %}
-              <option>{{ hotel.name }}</option>
-            {% endfor %}
+              <script>
+                let hotel = hotels.map(function(arr){
+                  return '<option>' + arr.name + '</option>';
+                })
+                $('#hotel-choices').append(hotel);
+              </script>
             </select>
-            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+
+            <button data-action="add" id="hotel-button" class="btn btn-primary btn-circle pull-right">+</button>
+            <script>
+              $('#hotel-button').on('click', function(){
+                $('#hotels-name').append($('#hotel-choices').val() + "<br>");
+              });
+            </script>            
           </div>
           <div>
             <h4>Restaurants</h4>
             <select data-type="restaurant" id="restaurant-choices">
-              {% for restaurant in restaurants %}
-                <option>{{ restaurant.name }}</option>
-              {% endfor %}
+              <script>
+                let restaurant = restaurants.map(function(arr){
+                  return '<option>' + arr.name + '</option>';
+                })
+                $('#restaurant-choices').append(restaurant);
+            </script>
             </select>
-            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+            <button data-action="add" id="restaurant-button" class="btn btn-primary btn-circle pull-right">+</button>
+            <script>
+              $('#restaurant-button').on('click', function(){
+                $('#retaurants-name').append($('#restaurant-choices').val() + "<br>");
+              });
+            </script>
+
           </div>
           <div>
             <h4>Activities</h4>
             <select data-type="activity" id="activity-choices">
-              {% for activity in activities %}
-                <option>{{ activity.name }}</option>
-              {% endfor %}
+            <script>
+
+            for (index in activities){
+              let option = '<option>'+ activities[index].name+'</option>'
+              $('#activity-choices').append(option);  
+            }
+            </script>
             </select>
-            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+            <button data-action="add" id="activity-button" class="btn btn-primary btn-circle pull-right">+</button>
+            <script>
+              $('#activity-button').on('click', function(){
+                $('#activities-name').append($('#activity-choices').val() + "<br>");
+                console.log($('#activity-choices'))
+              });
+            </script>
           </div>
         </div>
       </div>
@@ -53,9 +81,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="day-buttons">
-            <button class="btn btn-circle day-btn">1</button>
-            <button class="btn btn-circle day-btn current-day">2</button>
-            <button class="btn btn-circle day-btn">3</button>
+            <!-- <button class="btn btn-circle day-btn">1</button> -->
+            <!-- <button class="btn btn-circle day-btn current-day">2</button> -->
+            <!-- <button class="btn btn-circle day-btn">3</button> -->
             <button class="btn btn-circle day-btn" id="day-add">+</button>
           </div>
         </div>
@@ -64,7 +92,7 @@
             <h4>My Hotel</h4>
             <ul class="list-group">
               <div class="itinerary-item">
-                <span class="title">Andaz Wall Street</span>
+                <span class="title" id="hotels-name"></span>
                 <button class="btn btn-xs btn-danger remove btn-circle">x</button>
               </div>
             </ul>
@@ -73,7 +101,7 @@
             <h4>My Restaurants</h4>
             <ul class="list-group">
               <div class="itinerary-item">
-                <span class="title">Bouley</span>
+                <span class="title" id="retaurants-name"></span>
                 <button class="btn btn-xs btn-danger remove btn-circle">x</button>
               </div>
             </ul>
@@ -82,7 +110,7 @@
             <h4>My Activities</h4>
             <ul class="list-group">
               <div class="itinerary-item">
-                <span class="title">Mahayana Buddhist Temple Association</span>
+                <span class="title" id="activities-name"></span>
                 <button class="btn btn-xs btn-danger remove btn-circle">x</button>
               </div>
             </ul>
@@ -92,4 +120,6 @@
     </div>
   </div>
 </div>
+
+  
 {% endblock %}
